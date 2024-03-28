@@ -28,7 +28,10 @@ const Header = (props) => {
 
 const Trends = () => (
   <View style = {styles.trends}>
-    <ScrollView horizontal = {true}>
+    <ScrollView 
+		horizontal = {true}
+		showsHorizontalScrollIndicator={false}
+	>
     	{data.woofs.map((woof) => 
 	  		<Cards 
 				key = {woof.id} 
@@ -47,7 +50,7 @@ const Cards = (props) => {
 			source = {{uri: props.avatar}} 
 			style = {styles.cardsAvatar}	
 		/>
-		<Text style = {styles.cardsText}>
+		<Text style = {styles.cardsText} >
 		{props.woofName}
 		</Text>
 	</View>
@@ -78,26 +81,31 @@ const styles = StyleSheet.create({
   trends: {
     flex: 0.1675,
     flexDirection: 'row',
-    backgroundColor: "green",
 	justifyContent: 'flex-start',
 	alignItems: 'center',
 	padding: 12,
   },
   cards : {
-    backgroundColor: 'black',
+    backgroundColor: '#FFFFFF',
     width: 78,
     height: 102,
 	marginRight: 12,
 	borderWidth: 1,
 	borderColor: '#E7E3EB',
 	borderRadius: 10,
-	padding: 8,
+	padding: 5,
+	justifyContent: 'space-between',
+	alignItems: 'center', 
   },
   cardsText: {
-	color: "white",
+	color: "#280D5F",
+	fontWeight: 600,
+	// alignSelf: 'center',
+	paddingTop: 2,
   },
   cardsAvatar: {
-	flex: 1,
+	height: 75,
+	width: 65,
 	borderRadius: 100,
   }
 
