@@ -6,14 +6,15 @@ const App = () => (
     <SafeAreaView style = {{flex: 1}}>
       <HomeScreen/>
     </SafeAreaView>
-  )
+);
 
 const HomeScreen = () => (
-  <View style = {styles.homeScreen}>
-    <Header label = "Trending Woofs"></Header>
-      <Trends></Trends>
-    <Header label = "New Woof Posts"></Header>
-  </View>
+	<View style = {styles.homeScreen}>
+		<Header label = "Trending Woofs"/>
+			<Trends/>
+		<Header label = "New Woof Posts"/>
+			<Posts/>
+	</View>
 );
 
 const Header = (props) => {
@@ -30,14 +31,14 @@ const Trends = () => (
   <View style = {styles.trends}>
     <ScrollView 
 		horizontal = {true}
-		showsHorizontalScrollIndicator={false}
-	>
-    	{data.woofs.map((woof) => 
-	  		<Cards 
-				key = {woof.id} 
-				woofName = {woof.name}
-				avatar = {woof.avatar}
-			/> )}
+		showsHorizontalScrollIndicator={false}>
+			{data.woofs.map((woof) => 
+				<Cards 
+					key = {woof.id} 
+					woofName = {woof.name}
+					avatar = {woof.avatar}
+				/>
+			)}
     </ScrollView>
   </View>
 
@@ -54,7 +55,45 @@ const Cards = (props) => {
 		{props.woofName}
 		</Text>
 	</View>
-  );
+  );	
+};
+
+const Posts = () => {
+	return (
+		<View style = {styles.posts}>
+			<ScrollView>
+				{data.posts.map((eachPost) =>
+					<PostCards 
+						key = {eachPost.id}
+						title = {eachPost.title}
+						description = {eachPost.description}
+						image = {eachPost.image}
+					/>
+				)}
+			</ScrollView>
+		</View>
+	);
+};
+const PostCards = (props) => {
+	return (
+		<View style = {styles.postCards}>
+			<Image 
+				source = {{uri: props.image}}
+				style = {styles.postsImages}
+			/>
+			<View style = {{flex: 2}}>
+				<Text>{props.title}</Text>
+				<Text>{props.description}</Text>
+			</View>
+		</View>
+	);
+};
+
+const PostCardsText = () => {
+	<View>
+		<Text></Text>
+		<Text></Text>
+	</View>
 }
 
 const styles = StyleSheet.create({
@@ -79,7 +118,7 @@ const styles = StyleSheet.create({
 	paddingBottom: 3,
   },
   trends: {
-    flex: 0.1675,
+    flex: 0.175,
     flexDirection: 'row',
 	justifyContent: 'flex-start',
 	alignItems: 'center',
@@ -100,14 +139,32 @@ const styles = StyleSheet.create({
   cardsText: {
 	color: "#280D5F",
 	fontWeight: 600,
-	// alignSelf: 'center',
 	paddingTop: 2,
   },
   cardsAvatar: {
 	height: 75,
 	width: 65,
 	borderRadius: 100,
-  }
+  },
+  posts: {
+	flex: 0.71,
+	backgroundColor: 'green',
+	paddingTop: 20,
+	paddingLeft: 20,
+	paddingRight: 20,
+	alignItems: 'center',
+
+  },
+  postCards: {
+	width: 330,
+	height: 80,
+	backgroundColor: 'pink',
+	flexDirection: 'row',
+	marginBottom: 20,
+  },
+  postsImages: {
+	flex: 1,
+  },
 
   });
 
