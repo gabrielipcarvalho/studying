@@ -113,7 +113,8 @@ const styles = StyleSheet.create({
 	backgroundColor: '#FAF9FA',
   },
   header: {
-    flex: 0.0615,
+    flex: 0.05,
+	// maxHeight: 10,
     // backgroundColor: 'pink',
     flexDirection: 'row',
 	justifyContent:'flex-start',
@@ -128,7 +129,7 @@ const styles = StyleSheet.create({
 	paddingBottom: 3,
   },
   trends: {
-    flex: 0.175,
+    flex: 0.17,
     flexDirection: 'row',
 	justifyContent: 'flex-start',
 	alignItems: 'center',
@@ -145,6 +146,12 @@ const styles = StyleSheet.create({
 	padding: 5,
 	justifyContent: 'space-between',
 	alignItems: 'center', 
+
+	overflow: 'visible',
+	shadowColor: '#000', // shadow color
+	shadowOffset: { width: 0, height: 2 }, // shadow position
+	shadowOpacity: 0.25, // shadow opacity
+	shadowRadius: 1, // shadow blur radius
   },
   cardsText: {
 	color: "#280D5F",
