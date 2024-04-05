@@ -31,7 +31,7 @@ const Trends = () => (
   <View style = {styles.trends}>
     <ScrollView 
 		horizontal = {true}
-		showsHorizontalScrollIndicator={false}>
+		showsHorizontalScrollIndicator = {false}>
 			{data.woofs.map((woof) => 
 				<Cards 
 					key = {woof.id} 
@@ -52,7 +52,7 @@ const Cards = (props) => {
 			style = {styles.cardsAvatar}	
 		/>
 		<Text style = {styles.cardsText} >
-		{props.woofName}
+			{props.woofName}
 		</Text>
 	</View>
   );	
@@ -61,14 +61,15 @@ const Cards = (props) => {
 const Posts = () => {
 	return (
 		<View style = {styles.posts}>
-			<ScrollView>
-				{data.posts.map((eachPost) =>
-					<PostCards 
-						key = {eachPost.id}
-						title = {eachPost.title}
-						description = {eachPost.description}
-						image = {eachPost.image}
-					/>
+			<ScrollView
+				showsVerticalScrollIndicator = {false}>
+					{data.posts.map((eachPost) =>
+						<PostCards 
+							key = {eachPost.id}
+							title = {eachPost.title}
+							description = {eachPost.description}
+							image = {eachPost.image}
+						/>
 				)}
 			</ScrollView>
 		</View>
@@ -79,22 +80,31 @@ const PostCards = (props) => {
 		<View style = {styles.postCards}>
 			<Image 
 				source = {{uri: props.image}}
-				style = {styles.postsImages}
+				style = {styles.postImages}
 			/>
-			<View style = {{flex: 2}}>
-				<Text>{props.title}</Text>
-				<Text>{props.description}</Text>
-			</View>
+			<PostText 
+				title = {props.title}
+				description = {props.description}
+			/>
 		</View>
 	);
 };
-
-const PostCardsText = () => {
-	<View>
-		<Text></Text>
-		<Text></Text>
-	</View>
-}
+const PostText = (props) => {
+	return (
+		<View style = {styles.postTextView}>
+			<Text style = {styles.postTextTitle}>
+				{props.title}
+			</Text>
+			<Text 
+				styles = {styles.postTextDescription}
+				numberOfLines = {2}
+				ellipsizeMode='tail'
+			>
+					{props.description}
+			</Text>
+		</View>
+	);
+};
 
 const styles = StyleSheet.create({
   homeScreen: {
@@ -104,7 +114,7 @@ const styles = StyleSheet.create({
   },
   header: {
     flex: 0.0615,
-    backgroundColor: 'pink',
+    // backgroundColor: 'pink',
     flexDirection: 'row',
 	justifyContent:'flex-start',
 	alignItems: 'flex-end'
@@ -112,7 +122,7 @@ const styles = StyleSheet.create({
     },
   headerText: {
     fontSize: 20,
-    fontWeight: '600',
+    fontWeight: 'bold',
 	// fontFamily: 'Kanit',
 	paddingLeft: 10,
 	paddingBottom: 3,
@@ -138,7 +148,7 @@ const styles = StyleSheet.create({
   },
   cardsText: {
 	color: "#280D5F",
-	fontWeight: 600,
+	fontWeight: 'bold',
 	paddingTop: 2,
   },
   cardsAvatar: {
@@ -148,7 +158,7 @@ const styles = StyleSheet.create({
   },
   posts: {
 	flex: 0.71,
-	backgroundColor: 'green',
+	// backgroundColor: 'green',
 	paddingTop: 20,
 	paddingLeft: 20,
 	paddingRight: 20,
@@ -158,12 +168,23 @@ const styles = StyleSheet.create({
   postCards: {
 	width: 330,
 	height: 80,
-	backgroundColor: 'pink',
+	// backgroundColor: 'pink',
 	flexDirection: 'row',
 	marginBottom: 20,
   },
-  postsImages: {
+  postImages: {
 	flex: 1,
+	borderRadius: 15,
+  },	
+  postTextView: {
+	flex: 2,
+	padding: 5,
+  },
+  postTextTitle: {
+	fontWeight: 'bold',
+  },
+  postTextDescription: {
+
   },
 
   });
